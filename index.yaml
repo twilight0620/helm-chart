@@ -31,6 +31,6 @@ entries:
     icon: https://pub-68160d88f4744423960a290fc7a5031d.r2.dev/mcs-icon.png
     name: mcs-ext-chart
     urls:
-    - https://github.com/twilight0620/helm-chart/mcs-ext-chart-0.0.1.tgz
+    - https://raw.githubusercontent.com/twilight0620/helm-chart/main/mcs-ext-chart-0.0.1.tgz
     version: 0.0.1
 generated: "2025-10-17T10:01:31.80312+08:00"
