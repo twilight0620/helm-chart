@@ -1,5 +1,4 @@
 annotations:
-  catalog.cattle.io/auto-install: mcs-addon-crd=match
   catalog.cattle.io/display-name: Multi-cluster Service Addon
   catalog.cattle.io/kube-version: '>= 1.23.0-0'
   catalog.cattle.io/namespace: mcs-addon-system
