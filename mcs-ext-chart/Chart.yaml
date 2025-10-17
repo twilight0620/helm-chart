@@ -1,0 +1,31 @@
+annotations:
+  catalog.cattle.io/auto-install: mcs-addon-crd=match
+  catalog.cattle.io/display-name: Multi-cluster Service Addon
+  catalog.cattle.io/kube-version: '>= 1.23.0-0'
+  catalog.cattle.io/namespace: mcs-addon-system
+  catalog.cattle.io/os: linux
+  catalog.cattle.io/permits-os: linux
+  catalog.cattle.io/rancher-version: '>= 2.10.0-0 < 2.13.0-0'
+  catalog.cattle.io/release-name: mcs-addon-controller
+#  catalog.cattle.io/scope: management
+  catalog.cattle.io/ui-component: mcs-ext-chart
+apiVersion: v2
+name: mcs-ext-chart
+description: Multi-cluster Service Extension Chart
+version: 0.0.1
+appVersion: 0.19.2
+icon: https://pub-68160d88f4744423960a290fc7a5031d.r2.dev/mcs-icon.png
+
+dependencies:
+  - name: mcs-addon-crd
+    version: "0.0.1"
+    repository: "file://charts/mcs-addon-crd"
+    condition: mcs-addon-crd.enabled
+  - name: mcs-addon
+    version: "0.0.1"
+    repository: "file://charts/mcs-addon"
+    condition: mcs-addon.enabled
+  - name: submariner-operator
+    version: "0.0.0"
+    repository: "file://charts/submariner-operator"
+    condition: submariner-operator.enabled
