@@ -5,8 +5,6 @@ annotations:
   catalog.cattle.io/os: linux
   catalog.cattle.io/permits-os: linux
   catalog.cattle.io/rancher-version: '>= 2.10.0-0 < 2.13.0-0'
-#  catalog.cattle.io/release-name: mcs-addon-controller
-#  catalog.cattle.io/scope: management
   catalog.cattle.io/ui-component: mcs-ext-chart
 apiVersion: v2
 name: mcs-ext-chart
