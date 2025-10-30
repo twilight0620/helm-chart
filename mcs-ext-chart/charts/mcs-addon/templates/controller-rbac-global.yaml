@@ -72,37 +72,6 @@ roleRef:
   name: {{ template "mcs-addon.component_type_name" . }}
   apiGroup: rbac.authorization.k8s.io
 ---
-{{/*# broker rbac*/}}
-{{/*# refer to https://github.com/submariner-io/submariner-charts/blob/v0.19.2/submariner-k8s-broker/templates/rbac.yaml*/}}
-{{/*apiVersion: rbac.authorization.k8s.io/v1*/}}
-{{/*kind: ClusterRole*/}}
-{{/*metadata:*/}}
-{{/*  name: {{ template "mcs-addon.broker_role_name" . }}*/}}
-{{/*  labels:*/}}
-{{/*    {{- include "mcs-addon.chart_labels" . | nindent 4 }}*/}}
-{{/*rules:*/}}
-{{/*- apiGroups: ["discovery.k8s.io"]*/}}
-{{/*  resources: ["endpointslices", "endpointslices/restricted"]*/}}
-{{/*  verbs: ["create", "get", "list", "watch","patch", "update", "delete"]*/}}
-{{/*- apiGroups: ["multicluster.x-k8s.io"]*/}}
-{{/*  resources: ["*"]*/}}
-{{/*  verbs: ["create", "get", "list", "watch", "update", "delete"]*/}}
-{{/*---*/}}
-{{/*apiVersion: rbac.authorization.k8s.io/v1*/}}
-{{/*kind: ClusterRoleBinding*/}}
-{{/*metadata:*/}}
-{{/*  name: {{ template "mcs-addon.broker_role_name" . }}*/}}
-{{/*  labels:*/}}
-{{/*    {{- include "mcs-addon.chart_labels" . | nindent 4 }}*/}}
-{{/*subjects:*/}}
-{{/*  - kind: ServiceAccount*/}}
-{{/*    name: {{ template "mcs-addon.component_name" . }}*/}}
-{{/*    namespace: {{ .Release.Namespace }}*/}}
-{{/*roleRef:*/}}
-{{/*  kind: ClusterRole*/}}
-{{/*  name: {{ template "mcs-addon.broker_role_name" . }}*/}}
-{{/*  apiGroup: rbac.authorization.k8s.io*/}}
-{{/*---*/}}
 # fleet-default rbac
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role

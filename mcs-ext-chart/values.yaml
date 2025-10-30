@@ -6,77 +6,47 @@ global:
   cattle:
     systemDefaultRegistry: ""
     provisioningNamespace: "fleet-default"
-
 # Sub-chart configuration
 mcs-addon-crd:
-  enabled: true  # Only enabled for global installationType
-  
+  enabled: true # Only enabled for global installationType
 mcs-addon:
-  enabled: true   # Enabled for all installationType
-  clusterID: "clustera"
-  dataPlane:
-    namespace: "cs-ds5d6"
-    caCert: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ2VENDQVdPZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQkdNUnd3R2dZRFZRUUtFeE5rZVc1aGJXbGoKYkdsemRHVnVaWEl0YjNKbk1TWXdKQVlEVlFRRERCMWtlVzVoYldsamJHbHpkR1Z1WlhJdFkyRkFNVGMyTURNeQpNREF5TlRBZUZ3MHlOVEV3TVRNd01UUTNNRFZhRncwek5URXdNVEV3TVRRM01EVmFNRVl4SERBYUJnTlZCQW9UCkUyUjVibUZ0YVdOc2FYTjBaVzVsY2kxdmNtY3hKakFrQmdOVkJBTU1IV1I1Ym1GdGFXTnNhWE4wWlc1bGNpMWoKWVVBeE56WXdNekl3TURJMU1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRWgrTjRjaFFqaVJiWQo5WXZHbVhCQ0haelhFOEQ3VjNjVS9ZV3BqMk15R3B2SU5rUlZXMFVhUm03aCsrQmo2b0hyYSsxcThjdHZua3VzCkRPbFN4SnF0bUtOQ01FQXdEZ1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWUQKVlIwT0JCWUVGTVU5bTl0MmhzZG9rVGxTMkx5V3l1bDErVDBDTUFvR0NDcUdTTTQ5QkFNQ0EwZ0FNRVVDSVFDVQpqazNTN3R3UklRaDBlSVlrL0NxUTZMZnN4allISjNRamhYTnQ5TUt6clFJZ01zTTBUMG1YVFVpMTZvTjVOeDIwCkJhQmtWVzFSMGJWL2trdVJsT2VrWWRrPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t"
-    apiServer: "https://3.107.19.145.sslip.io/k8s/clusters/local"
-    token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjlsLXZIOFh1OE5IcUlDMXJUMWNRM1RRWHNuM3RvSVZrZHd3MDVuZ0F1SjAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJjcy1kczVkNiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJjbHVzdGVyYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJjbHVzdGVyYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjZkMWM5MmNiLWVmMDQtNGRkMy1iNGIyLWU0NjEwNGRlYmZhZSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpjcy1kczVkNjpjbHVzdGVyYSJ9.z0aMtwTrIjJK3K8zkTY2DHtIv9DtYDHKNitTwCBn6IN0IxjWMM6WM7CQFDiiB_a2Hw-7b-x4GkG4E4zRC4b9DisvKJ_noFqokKvjbmj5VhiW2Y0VTP-zY_B4hLT9bPQJ57BXbQ1S4XySwolyMudZ-CpOx8jaEmqFbE_B8vyjXCfHk8DbMDaItRwutHf_Fvc_2SJWAdzUjSw6cGnoWjOJoZNtHyepo_whapEhWgXLIImPSmXhR7FhDxH84YCfHcH3RQN52gaJpmuIs1kJvdhOr8qjH1uzJ4OjGGsHSBGK5ZvW3-85lLSUcy-ZAzGeeG9tq4l7dW3jm_wcSqvL9SBIBQ"
-    insecure: false
-
+  enabled: true # Enabled for all installationType
   # Controller configuration
   controller:
     replicaCount: 1
     image:
-      repository: twilight0620/mcs-addon-controller
-      tag: 0.3.5
+      repository: cnrancher/mcs-addon-controller
+      tag: 208a5ce-dirty
       pullPolicy: IfNotPresent
-
-  # If installing type is cluster, then need to config
-  lighthouseAgent:
-    replicaCount: 1
-    apiServer: "3.107.19.145.sslip.io/k8s/clusters/local"
-    image:
-      repository: quay.io/submariner/lighthouse-agent
-      tag: 0.20.2
-      pullPolicy: IfNotPresent
-  lighthouseCoredns:
-    replicaCount: 2
-    image:
-      repository: quay.io/submariner/lighthouse-coredns
-      tag: 0.20.2
-      pullPolicy: IfNotPresent
-  
 submariner-operator:
   enabled: true
   submariner:
     clusterId: "clustera"
-    token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjlsLXZIOFh1OE5IcUlDMXJUMWNRM1RRWHNuM3RvSVZrZHd3MDVuZ0F1SjAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJjcy1kczVkNiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJjbHVzdGVyYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJjbHVzdGVyYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjZkMWM5MmNiLWVmMDQtNGRkMy1iNGIyLWU0NjEwNGRlYmZhZSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpjcy1kczVkNjpjbHVzdGVyYSJ9.z0aMtwTrIjJK3K8zkTY2DHtIv9DtYDHKNitTwCBn6IN0IxjWMM6WM7CQFDiiB_a2Hw-7b-x4GkG4E4zRC4b9DisvKJ_noFqokKvjbmj5VhiW2Y0VTP-zY_B4hLT9bPQJ57BXbQ1S4XySwolyMudZ-CpOx8jaEmqFbE_B8vyjXCfHk8DbMDaItRwutHf_Fvc_2SJWAdzUjSw6cGnoWjOJoZNtHyepo_whapEhWgXLIImPSmXhR7FhDxH84YCfHcH3RQN52gaJpmuIs1kJvdhOr8qjH1uzJ4OjGGsHSBGK5ZvW3-85lLSUcy-ZAzGeeG9tq4l7dW3jm_wcSqvL9SBIBQ"
+    token: ""
     clusterCidr: "10.100.0.0/16"
     serviceCidr: "10.101.0.0/16"
     cableDriver: "libreswan"
     healthcheckEnabled: true
-    clustersetIpEnabled: true
-    clustersetIpCidr: "242.254.0.0/16"
     # Override network plugin detection (optional)
     # Set to "generic" for RKE2 clusters without Calico API server
     # Valid values: generic, calico, ovnkubernetes, etc.
     # Leave empty to use auto-detection
     networkPluginOverride: "generic"
-    images:
-      repository: quay.io/submariner
-      tag: ""
-
+    # images:
+    #   repository: cnrancher
+    #   tag: ""
   broker:
-    server: 3.107.19.145.sslip.io/k8s/clusters/local
-    token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjlsLXZIOFh1OE5IcUlDMXJUMWNRM1RRWHNuM3RvSVZrZHd3MDVuZ0F1SjAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJjcy1kczVkNiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJjbHVzdGVyYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJjbHVzdGVyYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjZkMWM5MmNiLWVmMDQtNGRkMy1iNGIyLWU0NjEwNGRlYmZhZSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpjcy1kczVkNjpjbHVzdGVyYSJ9.z0aMtwTrIjJK3K8zkTY2DHtIv9DtYDHKNitTwCBn6IN0IxjWMM6WM7CQFDiiB_a2Hw-7b-x4GkG4E4zRC4b9DisvKJ_noFqokKvjbmj5VhiW2Y0VTP-zY_B4hLT9bPQJ57BXbQ1S4XySwolyMudZ-CpOx8jaEmqFbE_B8vyjXCfHk8DbMDaItRwutHf_Fvc_2SJWAdzUjSw6cGnoWjOJoZNtHyepo_whapEhWgXLIImPSmXhR7FhDxH84YCfHcH3RQN52gaJpmuIs1kJvdhOr8qjH1uzJ4OjGGsHSBGK5ZvW3-85lLSUcy-ZAzGeeG9tq4l7dW3jm_wcSqvL9SBIBQ
-    namespace: cs-ds5d6
+    server:
+    token:
+    namespace: cs-v2hts
     insecure: false
-    ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ2VENDQVdPZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQkdNUnd3R2dZRFZRUUtFeE5rZVc1aGJXbGoKYkdsemRHVnVaWEl0YjNKbk1TWXdKQVlEVlFRRERCMWtlVzVoYldsamJHbHpkR1Z1WlhJdFkyRkFNVGMyTURNeQpNREF5TlRBZUZ3MHlOVEV3TVRNd01UUTNNRFZhRncwek5URXdNVEV3TVRRM01EVmFNRVl4SERBYUJnTlZCQW9UCkUyUjVibUZ0YVdOc2FYTjBaVzVsY2kxdmNtY3hKakFrQmdOVkJBTU1IV1I1Ym1GdGFXTnNhWE4wWlc1bGNpMWoKWVVBeE56WXdNekl3TURJMU1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRWgrTjRjaFFqaVJiWQo5WXZHbVhCQ0haelhFOEQ3VjNjVS9ZV3BqMk15R3B2SU5rUlZXMFVhUm03aCsrQmo2b0hyYSsxcThjdHZua3VzCkRPbFN4SnF0bUtOQ01FQXdEZ1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWUQKVlIwT0JCWUVGTVU5bTl0MmhzZG9rVGxTMkx5V3l1bDErVDBDTUFvR0NDcUdTTTQ5QkFNQ0EwZ0FNRVVDSVFDVQpqazNTN3R3UklRaDBlSVlrL0NxUTZMZnN4allISjNRamhYTnQ5TUt6clFJZ01zTTBUMG1YVFVpMTZvTjVOeDIwCkJhQmtWVzFSMGJWL2trdVJsT2VrWWRrPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t
+    ca:
   ipsec:
-    psk: "9ftXOJ3Yrc6pSu3pcVJF7v1zikVJI@yvh"
+    psk: ""
     ikePort: 500
     natPort: 4500
-
-  operator:
-    image:
-      repository: quay.io/submariner/submariner-operator
-      tag: "0.20.2"
-      pullPolicy: IfNotPresent
+  # operator:
+  #   image:
+  #     repository: cnrancher/mirrored-submariner-submariner-operator
+  #     tag: "0.20.2"
+  #     pullPolicy: IfNotPresent

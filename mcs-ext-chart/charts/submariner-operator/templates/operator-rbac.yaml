@@ -4,6 +4,8 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: submariner-operator
+  annotations:
+    kubernetes.io/enforce-mountable-secrets: "true"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -29,6 +31,15 @@ rules:
       - get
       - create
       - update
+      - delete
+  - apiGroups:
+      - ""
+    resources:
+      # Temporarily needed for network-plugin syncer removal
+      - serviceaccounts
+    resourceNames:
+      - submariner-networkplugin-syncer
+    verbs:
       - delete
   - apiGroups:
       - apps
@@ -62,6 +73,8 @@ rules:
   - apiGroups:
       - submariner.io
     resources:
+      - brokers
+      - brokers/status
       - submariners
       - submariners/status
       - servicediscoveries
@@ -123,18 +136,6 @@ kind: ClusterRole
 metadata:
   name: submariner-operator
 rules:
-  - apiGroups:
-      - submariner.io
-    resources:
-      - brokers
-      - brokers/status
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - delete
   # submariner-operator updates the config map of core-dns to forward requests to
   # clusterset.local to Lighthouse DNS, also looks at existing configmaps
   # to figure out network settings
@@ -202,13 +203,16 @@ rules:
     verbs:
       - list
   - apiGroups:
-      - networking.k8s.io
+      - rbac.authorization.k8s.io
     resources:
-      # Needed for service CIDR discovery
-      - servicecidrs
+      # Temporarily needed for network-plugin syncer removal
+      - clusterroles
+      - clusterrolebindings
+    resourceNames:
+      - ocp-submariner-networkplugin-syncer
+      - submariner-networkplugin-syncer
     verbs:
-      - get
-      - list
+      - delete
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -216,8 +220,8 @@ metadata:
   name: submariner-operator
 subjects:
   - kind: ServiceAccount
-    name: submariner-operator
     namespace: {{ .Release.Namespace }}
+    name: submariner-operator
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

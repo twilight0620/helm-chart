@@ -3,10 +3,10 @@
 
 # Submariner configuration
 submariner:
-  clusterId: "clustera"
-  token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjlsLXZIOFh1OE5IcUlDMXJUMWNRM1RRWHNuM3RvSVZrZHd3MDVuZ0F1SjAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJjcy1obno3dyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJjbHVzdGVyYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJjbHVzdGVyYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImRmOGNhYzg4LWJhMjktNDBiYi1iNWUwLTllNmM2NjkyNmM0NCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpjcy1obno3dzpjbHVzdGVyYSJ9.wFMQROT9r9gJ3Bbg_3dEgdmOuqgOWYTCXLgKccp7aET4QESKJRZa02XbpaghtESaboNLgOmOU2TY51IwaXuuzTFARfW5Djbak26daTp6i6wKBdz3uhdlubhfF9NVOesv9oMqQsTBsVjbLazI1KuJLpSJNpqu8a4WTmGcPaYuxK692hYD1qJBfnY7Yh99CnwYrRoeQ9ENlWLsYkVF22vQdd1EJKJJbmXI5tYxwFxjMkhwbEFB7SKLN7U1Xrm4b4GMxvtJhPGlrUNkniWmlKziW10kc2g-f3AR3zGuS1S30um7oAK6oMUNSU5uKuKs3B5ki6ahCnj3DBP2FMPSYm2cFQ"
-  clusterCidr: "10.100.0.0/16"
-  serviceCidr: "10.101.0.0/16"
+  clusterId: ""
+  token: ""
+  clusterCidr: ""
+  serviceCidr: ""
   globalCidr: ""
   clustersetIpCidr: ""
   clustersetIpEnabled: false
@@ -27,24 +27,31 @@ submariner:
 #    configMapName: "rke2-coredns-rke2-coredns"
 #    namespace: "kube-system"
   images:
-    repository: quay.io/submariner
+    repository: cnrancher
     tag: ""
 
 # Broker configuration
 broker:
-  server: 3.107.26.248.sslip.io/k8s/clusters/local
-  token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjlsLXZIOFh1OE5IcUlDMXJUMWNRM1RRWHNuM3RvSVZrZHd3MDVuZ0F1SjAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJjcy1obno3dyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJjbHVzdGVyYiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJjbHVzdGVyYiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjUzNWUzN2ZiLTRkMjMtNDY2ZS05Zjk3LWMzOTA4MGI2ZDEzZiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpjcy1obno3dzpjbHVzdGVyYiJ9.f3Rkeb-ZuuP0y7b9LMRcvgKkoe58vdvOPpMjoBxqDAzv8Uu6Qq4aqgmk8p5W_LzaPsuNdMf0DICJ9Rl9dT7eeoeWYlP45mqPXgxR73uN_nCh0UmB7ZvM5Ws7tfZbJnK0fIB0SHb_lPE42ypoL9oRLe3mPPlANnpbfTDoaXNKGDD23b5dG6-wrWxPTe0lxXJB_lEX16dH9sFpru0J1S8gf3eX5-7eh7vWSc0jy4V-jYFYd79nNYaaUlSLRtD2j8cry3zhZqtBCeQvtHl8gAG4Dl_OtQOK6LxNJJY2NfMwHm_RGMnd2CMirTsZs9fvzTeSZQptTkVTVTQ94nezgjaipg
+  server:
+  token:
   namespace: cs-hnz7w
   insecure: false
-  ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ2VENDQVdPZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQkdNUnd3R2dZRFZRUUtFeE5rZVc1aGJXbGoKYkdsemRHVnVaWEl0YjNKbk1TWXdKQVlEVlFRRERCMWtlVzVoYldsamJHbHpkR1Z1WlhJdFkyRkFNVGMyTURNeQpNREF5TlRBZUZ3MHlOVEV3TVRNd01UUTNNRFZhRncwek5URXdNVEV3TVRRM01EVmFNRVl4SERBYUJnTlZCQW9UCkUyUjVibUZ0YVdOc2FYTjBaVzVsY2kxdmNtY3hKakFrQmdOVkJBTU1IV1I1Ym1GdGFXTnNhWE4wWlc1bGNpMWoKWVVBeE56WXdNekl3TURJMU1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRWgrTjRjaFFqaVJiWQo5WXZHbVhCQ0haelhFOEQ3VjNjVS9ZV3BqMk15R3B2SU5rUlZXMFVhUm03aCsrQmo2b0hyYSsxcThjdHZua3VzCkRPbFN4SnF0bUtOQ01FQXdEZ1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWUQKVlIwT0JCWUVGTVU5bTl0MmhzZG9rVGxTMkx5V3l1bDErVDBDTUFvR0NDcUdTTTQ5QkFNQ0EwZ0FNRVVDSVFDVQpqazNTN3R3UklRaDBlSVlrL0NxUTZMZnN4allISjNRamhYTnQ5TUt6clFJZ01zTTBUMG1YVFVpMTZvTjVOeDIwCkJhQmtWVzFSMGJWL2trdVJsT2VrWWRrPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t
+  ca:
   globalnet: false
 
 # Images configuration
-images: {}
+# Override specific component images with custom repository paths
+images:
+  submariner-operator: cnrancher/mirrored-submariner-submariner-operator:0.20.2
+  submariner-gateway: cnrancher/mirrored-submariner-submariner-gateway:0.20.2
+  submariner-route-agent: cnrancher/mirrored-submariner-submariner-route-agent:0.20.2
+  lighthouse-agent: cnrancher/mirrored-submariner-lighthouse-agent:0.20.2
+  lighthouse-coredns: cnrancher/mirrored-submariner-lighthouse-coredns:0.20.2
+  submariner-nettest: cnrancher/mirrored-submariner-nettest:0.20.2
 
 # IPSec configuration
 ipsec:
-  psk: "9ftXOJ3Yrc6pSu3pcVJF7v1zikVJI@yvh"
+  psk: ""
   debug: false
   forceUDPEncaps: false
   ikePort: 500
@@ -59,7 +66,7 @@ leadership:
 # Operator configuration
 operator:
   image:
-    repository: quay.io/submariner/submariner-operator
+    repository: cnrancher/mirrored-submariner-submariner-operator
     tag: "0.20.2"
     pullPolicy: IfNotPresent
   resources: {}

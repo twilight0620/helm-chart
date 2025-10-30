@@ -1,9 +1,12 @@
-{{- if and .Values.broker.globalnet (eq .Values.global.installationType "submariner") }}
+{{- if eq .Values.global.installationType "submariner" }}
+{{- if .Values.broker.globalnet }}
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: submariner-globalnet
+  annotations:
+    kubernetes.io/enforce-mountable-secrets: "true"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -11,13 +14,6 @@ metadata:
   creationTimestamp: null
   name: submariner-globalnet
 rules:
-  - apiGroups:
-      - ""
-    resources:
-      - configmaps
-    verbs:
-      - get
-      - list
   - apiGroups:
       - submariner.io
     resources:
@@ -127,10 +123,11 @@ metadata:
   name: submariner-globalnet
 subjects:
   - kind: ServiceAccount
-    name: submariner-globalnet
     namespace: {{ .Release.Namespace }}
+    name: submariner-globalnet
 roleRef:
   kind: ClusterRole
   name: submariner-globalnet
   apiGroup: rbac.authorization.k8s.io
 {{- end -}}
+{{- end }}

@@ -1,9 +1,10 @@
+{{- if eq .Values.global.installationType "submariner" }}
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.18.0
+    controller-gen.kubebuilder.io/version: v0.17.2
   name: submariners.submariner.io
 spec:
   group: submariner.io
@@ -138,9 +139,6 @@ spec:
                 x-kubernetes-list-type: set
               debug:
                 description: Enable operator debugging.
-                type: boolean
-              disableIntraClusterConnectivity:
-                description: Disable intra-cluster connectivity routing.
                 type: boolean
               globalCIDR:
                 description: The Global CIDR super-net range for allocating GlobalCIDRs
@@ -1064,7 +1062,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.18.0
+    controller-gen.kubebuilder.io/version: v0.17.2
   name: servicediscoveries.submariner.io
 spec:
   group: submariner.io
@@ -1111,8 +1109,6 @@ spec:
               brokerK8sRemoteNamespace:
                 type: string
               brokerK8sSecret:
-                type: string
-              clusterCIDR:
                 type: string
               clusterID:
                 type: string
@@ -1224,7 +1220,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.18.0
+    controller-gen.kubebuilder.io/version: v0.17.2
   name: brokers.submariner.io
 spec:
   group: submariner.io
@@ -1298,3 +1294,4 @@ spec:
     storage: true
     subresources:
       status: {}
+{{- end }}

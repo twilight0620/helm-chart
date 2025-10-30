@@ -6,21 +6,17 @@
 
 # Debug mode
 debug: false
-
 # Cluster ID
 clusterID: "clustera"
-
 # Enable API service
 enableAPIService: true
-
 # Data plane configuration
 dataPlane:
   namespace: "cs-hnz7w"
-  caCert: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ2VENDQVdPZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQkdNUnd3R2dZRFZRUUtFeE5rZVc1aGJXbGoKYkdsemRHVnVaWEl0YjNKbk1TWXdKQVlEVlFRRERCMWtlVzVoYldsamJHbHpkR1Z1WlhJdFkyRkFNVGMyTURNeQpNREF5TlRBZUZ3MHlOVEV3TVRNd01UUTNNRFZhRncwek5URXdNVEV3TVRRM01EVmFNRVl4SERBYUJnTlZCQW9UCkUyUjVibUZ0YVdOc2FYTjBaVzVsY2kxdmNtY3hKakFrQmdOVkJBTU1IV1I1Ym1GdGFXTnNhWE4wWlc1bGNpMWoKWVVBeE56WXdNekl3TURJMU1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRWgrTjRjaFFqaVJiWQo5WXZHbVhCQ0haelhFOEQ3VjNjVS9ZV3BqMk15R3B2SU5rUlZXMFVhUm03aCsrQmo2b0hyYSsxcThjdHZua3VzCkRPbFN4SnF0bUtOQ01FQXdEZ1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWUQKVlIwT0JCWUVGTVU5bTl0MmhzZG9rVGxTMkx5V3l1bDErVDBDTUFvR0NDcUdTTTQ5QkFNQ0EwZ0FNRVVDSVFDVQpqazNTN3R3UklRaDBlSVlrL0NxUTZMZnN4allISjNRamhYTnQ5TUt6clFJZ01zTTBUMG1YVFVpMTZvTjVOeDIwCkJhQmtWVzFSMGJWL2trdVJsT2VrWWRrPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t"
-  apiServer: "https://3.107.26.248.sslip.io/k8s/clusters/local"
-  token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjlsLXZIOFh1OE5IcUlDMXJUMWNRM1RRWHNuM3RvSVZrZHd3MDVuZ0F1SjAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJjcy1obno3dyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJjbHVzdGVyYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJjbHVzdGVyYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImRmOGNhYzg4LWJhMjktNDBiYi1iNWUwLTllNmM2NjkyNmM0NCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpjcy1obno3dzpjbHVzdGVyYSJ9.wFMQROT9r9gJ3Bbg_3dEgdmOuqgOWYTCXLgKccp7aET4QESKJRZa02XbpaghtESaboNLgOmOU2TY51IwaXuuzTFARfW5Djbak26daTp6i6wKBdz3uhdlubhfF9NVOesv9oMqQsTBsVjbLazI1KuJLpSJNpqu8a4WTmGcPaYuxK692hYD1qJBfnY7Yh99CnwYrRoeQ9ENlWLsYkVF22vQdd1EJKJJbmXI5tYxwFxjMkhwbEFB7SKLN7U1Xrm4b4GMxvtJhPGlrUNkniWmlKziW10kc2g-f3AR3zGuS1S30um7oAK6oMUNSU5uKuKs3B5ki6ahCnj3DBP2FMPSYm2cFQ"
+  caCert: "caCert"
+  apiServer: "apiserver"
+  token: "token"
   insecure: false
-
 # Multi-cluster service configuration
 mcs:
   # Enable automatic CIDR detection for custom clusters
@@ -31,37 +27,17 @@ mcs:
   defaultServiceCIDR: "10.43.0.0/16"
   # Enable ServiceCIDR routing
   enableServiceCIDRRouting: false
-
 # Controller configuration
 controller:
   resources: {}
   replicaCount: 1
   image:
     repository: cnrancher/mcs-addon-controller
-    tag: 0.0.1
+    tag: 208a5ce-dirty
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
     port: 443
-
-# Lighthouse agent configuration
-lighthouseAgent:
-  resources: {}
-  replicaCount: 1
-  apiServer: "54.252.198.55.sslip.io/k8s/clusters/local"
-  image:
-    repository: quay.io/submariner/lighthouse-agent
-    tag: 0.20.2
-    pullPolicy: IfNotPresent
-
-# Lighthouse coredns configuration
-lighthouseCoredns:
-  resources: {}
-  replicaCount: 2
-  image:
-    repository: quay.io/submariner/lighthouse-coredns
-    tag: 0.20.2
-    pullPolicy: IfNotPresent
 
 # Scheduling configuration
 scheduling:
@@ -73,7 +49,6 @@ scheduling:
       value: "linux"
       effect: NoSchedule
   affinity: {}
-
 # Global configuration
 global:
   cattle:

@@ -3,7 +3,7 @@ annotations:
   catalog.cattle.io/namespace: mcs-addon-system
   catalog.cattle.io/release-name: mcs-global-addon-controller-crds
 apiVersion: v2
-name: mcs-addon-crd
+appVersion: 0.20.2
 description: A Helm chart for deploying mcs-api crds(Submariner modified version).
+name: mcs-addon-crd
 version: 0.0.1
-appVersion: 0.19.2

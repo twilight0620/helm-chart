@@ -4,6 +4,8 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: submariner-routeagent
+  annotations:
+    kubernetes.io/enforce-mountable-secrets: "true"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -106,13 +108,6 @@ rules:
       - delete
       - update
       - deletecollection
-  - apiGroups:
-      - operator.tigera.io
-    resources:
-      - installations
-    verbs:
-      - get
-      - update
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -120,8 +115,8 @@ metadata:
   name: submariner-routeagent
 subjects:
   - kind: ServiceAccount
-    name: submariner-routeagent
     namespace: {{ .Release.Namespace }}
+    name: submariner-routeagent
 roleRef:
   kind: ClusterRole
   name: submariner-routeagent

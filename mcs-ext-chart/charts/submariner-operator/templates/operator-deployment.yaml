@@ -42,7 +42,7 @@ spec:
               fieldPath: metadata.name
         - name: OPERATOR_NAME
           value: submariner-operator
-        image: "{{ .Values.operator.image.repository }}:{{ default .Chart.AppVersion .Values.operator.image.tag }}"
+        image: {{ .Values.operator.image.repository }}:{{ default .Chart.AppVersion .Values.operator.image.tag }}
         imagePullPolicy: {{ .Values.operator.image.pullPolicy }}
         name: submariner-operator
         resources: {}

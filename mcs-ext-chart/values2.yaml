@@ -1,0 +1,52 @@
+# Default values for mcs-ext-chart
+# Global configuration
+global:
+  # Installation type: global, cluster, submariner
+  installationType: submariner
+  cattle:
+    systemDefaultRegistry: ""
+    provisioningNamespace: "fleet-default"
+# Sub-chart configuration
+mcs-addon-crd:
+  enabled: true # Only enabled for global installationType
+mcs-addon:
+  enabled: true # Enabled for all installationType
+  # Controller configuration
+  controller:
+    replicaCount: 1
+    image:
+      repository: twilight0620/mcs-addon-controller
+      tag: 0.3.8
+      pullPolicy: IfNotPresent
+submariner-operator:
+  enabled: true
+  submariner:
+    clusterId: "clusterb"
+    token: "eyJhbGciOiJSUzI1NiIsImtpZCI6ImdzblJxeWRPYklSN01QT240RE9RVFJXQUVJdlVWemEtR3p0S2R2RklYXzgifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJjcy00YmtjeCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJjbHVzdGVyYiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJjbHVzdGVyYiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjFhZDlmYmYxLTRhYzYtNGU4YS05YTNhLWRjZmVkY2M1MzJkOCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpjcy00YmtjeDpjbHVzdGVyYiJ9.orTQlUI8t7xR8Z4UmEoCzonTtOO6EKymaNj7FikFgeT1B1BUdeTgFzCa3LxcQykMaCoFcJuJMruEzQiSiE1yv5j3lyKYND3sFC5AR0o9bdXi9Zw5FTU14AQpfa3nrM8MPEQiHwyKFXMYDxnxiW2kZHNQfpwbQmHFS8KGTzvMc1rNs6jB60Y-y0uTbNl9F1ex-68XLTqyTDENAEL1u5j-r1TW_kLhxui9Yv_QGL-0ZknpKta_PIKQr3nf1hUiH4eqU73hKyqqltCl06KcKVPXQ52wZr9zs134QtQ9G7NRfGoeWttIqxNHrUYSircadmSypAG1c4QnyWl11JEOyyXF6w"
+    clusterCidr: "10.200.0.0/16"
+    serviceCidr: "10.201.0.0/16"
+    cableDriver: "libreswan"
+    healthcheckEnabled: true
+    # Override network plugin detection (optional)
+    # Set to "generic" for RKE2 clusters without Calico API server
+    # Valid values: generic, calico, ovnkubernetes, etc.
+    # Leave empty to use auto-detection
+    networkPluginOverride: "generic"
+    images:
+      repository: quay.io/submariner
+      tag: ""
+  broker:
+    server: 3.107.173.98.sslip.io/k8s/clusters/local
+    token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImdzblJxeWRPYklSN01QT240RE9RVFJXQUVJdlVWemEtR3p0S2R2RklYXzgifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJjcy00YmtjeCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJjbHVzdGVyYiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJjbHVzdGVyYiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjFhZDlmYmYxLTRhYzYtNGU4YS05YTNhLWRjZmVkY2M1MzJkOCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpjcy00YmtjeDpjbHVzdGVyYiJ9.orTQlUI8t7xR8Z4UmEoCzonTtOO6EKymaNj7FikFgeT1B1BUdeTgFzCa3LxcQykMaCoFcJuJMruEzQiSiE1yv5j3lyKYND3sFC5AR0o9bdXi9Zw5FTU14AQpfa3nrM8MPEQiHwyKFXMYDxnxiW2kZHNQfpwbQmHFS8KGTzvMc1rNs6jB60Y-y0uTbNl9F1ex-68XLTqyTDENAEL1u5j-r1TW_kLhxui9Yv_QGL-0ZknpKta_PIKQr3nf1hUiH4eqU73hKyqqltCl06KcKVPXQ52wZr9zs134QtQ9G7NRfGoeWttIqxNHrUYSircadmSypAG1c4QnyWl11JEOyyXF6w
+    namespace: cs-2xmzt
+    insecure: true
+    ca:
+  ipsec:
+    psk: "num384CkBrbN2OerSLJ8oOtae3JegRqoBVh0zGPUr7w="
+    ikePort: 500
+    natPort: 4500
+  operator:
+    image:
+      repository: quay.io/submariner/submariner-operator
+      tag: "0.20.2"
+      pullPolicy: IfNotPresent
