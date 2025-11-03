@@ -11,7 +11,7 @@ entries:
       catalog.cattle.io/ui-component: mcs-ext-chart
     apiVersion: v2
     appVersion: fe8ec8c-dirty
-    created: "2025-11-03T11:38:08.064469+08:00"
+    created: "2025-11-03T14:13:18.976493+08:00"
     dependencies:
     - condition: mcs-addon-crd.enabled
       name: mcs-addon-crd
@@ -26,10 +26,10 @@ entries:
       repository: file://charts/submariner-operator
       version: 0.0.1
     description: Multi-cluster Service Extension Chart
-    digest: d24731bffffcf7249b6ede79b677941d7c2153f94f038a2e27b4e0d7d50dca65
+    digest: b5f302ba86c5563506e08b4aaa7472af7b62774286bd32a40009d196aed56351
     icon: https://pub-68160d88f4744423960a290fc7a5031d.r2.dev/mcs-icon.png
     name: mcs-ext-chart
     urls:
     - https://twilight0620.github.io/helm-chart/mcs-ext-chart-0.0.1.tgz
     version: 0.0.1
-generated: "2025-11-03T11:38:08.062447+08:00"
+generated: "2025-11-03T14:13:18.974886+08:00"
